@@ -4,20 +4,84 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<groupId>com.g2forge.clireport</groupId>
 	<artifactId>clireport</artifactId>
 	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
 
-	<parent>
-		<groupId>com.g2forge.clireport</groupId>
-		<artifactId>clir-project</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>clir-project/pom.xml</relativePath>
-	</parent>
+	<properties>
+		<clireport.organization>g2forge</clireport.organization>
+		<clireport.name>clireport</clireport.name>
+		<clireport.repository>clireport</clireport.repository>
+	</properties>
 
 	<name>clireport</name>
 	<description>A tool to report CLI arguments</description>
+	<url>
+		https://github.com/${clireport.organization}/${clireport.repository}/tree/${project.version}/${project.artifactId}</url>
+	<developers>
+		<developer>
+			<name>Greg Gibeling</name>
+			<email>gdgib@outlook.com</email>
+			<organization>G2 Forge</organization>
+			<organizationUrl>http://www.g2forge.com</organizationUrl>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>
+				https://github.com/${clireport.organization}/${clireport.repository}/blob/${project.version}/LICENSE</url>
+		</license>
+	</licenses>
 
-	<modules>
-		<module>clir-project</module>
-	</modules>
+	<scm>
+		<connection>
+			scm:git:git://github.com/${clireport.organization}/${clireport.repository}.git</connection>
+		<developerConnection>
+			scm:git:ssh://github.com:${clireport.organization}/${clireport.repository}.git</developerConnection>
+		<url>
+			http://github.com/${clireport.organization}/${clireport.repository}/tree/${project.version}</url>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.5</version>
+				<configuration />
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release-snapshot</id>
+			<repositories>
+				<repository>
+					<id>github-</id>
+					<url>https://maven.pkg.github.com/g2forge/*</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<distributionManagement>
+				<repository>
+					<id>github</id>
+					<name>GitHub g2forge Apache Maven Packages</name>
+					<url>https://maven.pkg.github.com/g2forge/clireport</url>
+				</repository>
+				<snapshotRepository>
+					<id>github</id>
+					<name>GitHub g2forge Apache Maven Packages</name>
+					<url>https://maven.pkg.github.com/g2forge/clireport</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+	</profiles>
 </project>

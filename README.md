@@ -1,3 +1,3 @@
-# clireport
+# CLIReport
 
-A tool to report CLI arguments
+A tool to report CLI arguments.
