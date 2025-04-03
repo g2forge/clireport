@@ -30,6 +30,8 @@ docker run ghcr.io/g2forge/clireport:latest A B
 docker run ghcr.io/g2forge/clireport:latest --exit 1 A B
 docker run ghcr.io/g2forge/clireport:latest --exit x
 docker push ghcr.io/g2forge/clireport:latest
+docker image tag ghcr.io/g2forge/clireport:latest ghcr.io/g2forge/clireport:v0.0.4
+docker push ghcr.io/g2forge/clireport:v0.0.4
 ```
 
 # Release
