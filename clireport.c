@@ -10,17 +10,24 @@ int main(int argc, char* argv[]) {
 		printf("%04d: %s\n", (unsigned)strlen(argument), argument);
 	}
 	
-	if ((strncmp(argv[1], "--exit", 7) == 0) && (argc >= 3)) {
+	int exitCode;
+	if ((argc >= 3) && (strncmp(argv[1], "--exit", 7) == 0)) {
 		char *endptr = NULL;
 		errno = 0;
-		int exitCode = (int) strtol(argv[2], &endptr, 10);
+		exitCode = (int) strtol(argv[2], &endptr, 10);
 		
 		if ((errno != 0) || *endptr) {
-			printf ("Exit code \"%s\" is not valid\n", argv[2]);
+			printf("Exit code \"%s\" is not valid, using -1 instead\n", argv[2]);
+			exitCode = -1;
+		} else {
+			printf("Exit code \"%s\" (%d) is valid\n", argv[2], exitCode);
 		}
-		
-		return exitCode;
+	} else {
+		printf("Exit code was not specified\n");
+		exitCode = 0;
 	}
 	
-	return 0;
+	// Use both for portability
+	exit(exitCode);
+	return exitCode;
 }
