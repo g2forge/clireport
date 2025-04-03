@@ -8,8 +8,9 @@ A tool to report CLI arguments.
 
 ```
 cl clireport.c
-clireport.exe A B
-clireport.exe --exit 1 A B
+.\clireport.exe A B; echo $LastExitCode
+.\clireport.exe --exit 1 A B; echo $LastExitCode
+.\clireport.exe --exit x; echo $LastExitCode
 ```
 
 ## Linux
@@ -18,6 +19,7 @@ clireport.exe --exit 1 A B
 docker run --rm -v "$(pwd):/clireport" -w /clireport gcc:latest gcc -o clireport clireport.c
 docker run --rm -v "$(pwd):/clireport" -w /clireport ubuntu:latest bash -c '/clireport/clireport A B; echo $?'
 docker run --rm -v "$(pwd):/clireport" -w /clireport ubuntu:latest bash -c '/clireport/clireport --exit 1 A B; echo $?'
+docker run --rm -v "$(pwd):/clireport" -w /clireport ubuntu:latest bash -c '/clireport/clireport --exit x; echo $?'
 ```
 
 ## Docker
@@ -26,6 +28,7 @@ docker run --rm -v "$(pwd):/clireport" -w /clireport ubuntu:latest bash -c '/cli
 docker build --tag=ghcr.io/g2forge/clireport:latest .
 docker run ghcr.io/g2forge/clireport:latest A B
 docker run ghcr.io/g2forge/clireport:latest --exit 1 A B
+docker run ghcr.io/g2forge/clireport:latest --exit x
 docker push ghcr.io/g2forge/clireport:latest
 ```
 
